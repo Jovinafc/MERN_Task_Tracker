@@ -1,0 +1,62 @@
+.home__tasks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.home__tasks > div {
+  width: 33%;
+  border: 1px solid black;
+  padding: 1.5rem;
+}
+
+header {
+  background-color: rgb(28, 21, 21);
+  display: flex;
+}
+
+p {
+  color: white;
+  flex: 1;
+  font-weight: bold;
+}
+
+.logout {
+  color: white;
+  border-radius: 1rem;
+  font-size: small;
+  cursor: pointer;
+  margin: 0.5rem;
+  background-color: rgb(90, 90, 157);
+}
+
+.home__tasks > .navlink {
+  margin: 1rem;
+  text-decoration: none;
+  color: white;
+  width: 300px;
+  padding: 1rem;
+  background-color: rgb(90, 90, 157);
+}
+
+.link-active {
+  margin: 1rem;
+  text-decoration: none;
+  color: white;
+  width: 300px;
+  padding: 1rem;
+  background-color: rgb(31, 143, 61);
+}
+
+.home__tasks > .navlink:hover {
+  color: black;
+  /* background-color: aqua; */
+  background-color: rgb(117, 117, 138);
+  cursor: pointer;
+}
+
+.home__tasks > div > .navlink {
+  text-decoration: inherit;
+  color: inherit;
+}

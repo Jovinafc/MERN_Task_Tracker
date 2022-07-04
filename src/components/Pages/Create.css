@@ -1,0 +1,16 @@
+.create_form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 3rem;
+  flex-direction: column;
+}
+
+.create_form > div {
+  margin: 1rem 0rem;
+}
+
+.labeltype {
+  margin-right: 0.5rem;
+}
