@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import axios from '../../axios';
 import { useStateValue } from '../../StateProvider';
+import Loading from '../Loading';
 import Task from './Task';
 
 const Complete = () => {
+  const [loading, setLoading] = useState(false);
   const [{}, dispatch] = useStateValue();
 
   const getTasks = () => {
@@ -17,6 +19,7 @@ const Complete = () => {
       .then((data) => {
         setTask(data.data);
         setFilteredTask(data.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -24,6 +27,7 @@ const Complete = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     getTasks();
   }, []);
 
@@ -95,44 +99,52 @@ const Complete = () => {
   const [task, setTask] = useState([]);
   const [filteredTask, setFilteredTask] = useState(task);
   const [search, setSearch] = useState('');
+  console.log(task);
   return (
     <div>
       <div>
-        {task.length === 0 ? (
-          <p>No tasks added!. Add some task from the Create Task Section</p>
+        {loading ? (
+          <Loading />
         ) : (
-          <div>
-            <div className='label'>
-              <form>
-                <label>Search</label>
-                <input
-                  type='text'
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </form>
+          <>
+            {' '}
+            {task.length === 0 ? (
+              <p style={{ color: 'black' }}>No tasks completed yet.</p>
+            ) : (
+              <div>
+                <div className='label'>
+                  <form>
+                    <label>Search</label>
+                    <input
+                      type='text'
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                  </form>
 
-              <select onChange={(e) => onSelectHandler(e)}>
-                <option defaultValue='All' value='All'>
-                  All
-                </option>
-                <option value='Daily'>Daily</option>
-                <option value='Weekly'>Weekly</option>
-                <option value='Monthly'>Monthly</option>
-                <option value='Yearly'>Yearly</option>
-              </select>
-            </div>
+                  <select onChange={(e) => onSelectHandler(e)}>
+                    <option defaultValue='All' value='All'>
+                      All
+                    </option>
+                    <option value='Daily'>Daily</option>
+                    <option value='Weekly'>Weekly</option>
+                    <option value='Monthly'>Monthly</option>
+                    <option value='Yearly'>Yearly</option>
+                  </select>
+                </div>
 
-            {handleSearch().map((t) => (
-              <Task
-                data={t}
-                key={t._id}
-                edit={false}
-                deleteBtn={onDelete}
-                uncompleteBtn={onComplete}
-              />
-            ))}
-          </div>
+                {handleSearch().map((t) => (
+                  <Task
+                    data={t}
+                    key={t._id}
+                    edit={false}
+                    deleteBtn={onDelete}
+                    uncompleteBtn={onComplete}
+                  />
+                ))}
+              </div>
+            )}{' '}
+          </>
         )}
       </div>
     </div>
