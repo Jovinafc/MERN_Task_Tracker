@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div>
       <header>
-        <p>Task Tracker</p>
+        <p className='titlep'>Task Tracker</p>
         <Logout />
       </header>
       <div className='home__tasks'>

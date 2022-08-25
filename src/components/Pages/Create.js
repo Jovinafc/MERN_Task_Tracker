@@ -94,6 +94,7 @@ const Create = () => {
 
   const onTaskHandler = (e) => {
     e.preventDefault();
+    setError('');
     setTask(e.target.value);
   };
 
@@ -111,7 +112,8 @@ const Create = () => {
             value={task}
             onChange={onTaskHandler}
             id=''
-            cols='100'
+            className='textarea'
+            // cols='100'
             placeholder='Enter Task'
             rows='10'
           ></textarea>
@@ -133,7 +135,7 @@ const Create = () => {
           <input onClick={(e) => onAddTask(e)} type='submit' value='Add task' />
         )}
 
-        <p>{error}</p>
+        <p className='error'>{error}</p>
       </form>
     </div>
   );
